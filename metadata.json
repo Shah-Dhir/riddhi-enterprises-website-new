@@ -1,0 +1,6 @@
+{
+  "name": "Riddhi Enterprises",
+  "description": "Manufacturer of Metal Cable Trays, Ladder Trays, Raceway Systems and Electrical Cable Support Structures for Industrial, Commercial and Infrastructure Projects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

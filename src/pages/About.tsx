@@ -51,40 +51,113 @@ export function About() {
         </div>
       </div>
       
-      {/* Timeline Placeholder */}
+      {/* Company Timeline */}
       <div className="bg-gray-50 py-20 border-y border-gray-200">
-         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-            <h2 className="text-3xl font-heading font-bold text-gray-900 mb-12 text-center">Company Timeline</h2>
-            
-            <div className="relative border-l-2 border-brand-blue/30 pl-8 ml-4 md:ml-0 md:pl-0 md:border-none space-y-12">
-              <div className="md:grid md:grid-cols-5 items-center relative">
-                 <div className="hidden md:block col-span-2 text-right pr-12">
-                   <h3 className="text-xl font-bold text-gray-900">Foundation</h3>
-                   <p className="text-gray-500 text-sm mt-2">The journey began</p>
-                 </div>
-                 <div className="absolute left-[-41px] top-0 md:static md:col-span-1 flex justify-center">
-                   <div className="h-6 w-6 rounded-full bg-brand-blue border-4 border-white shadow"></div>
-                 </div>
-                 <div className="md:col-span-2 md:pl-12">
-                    <span className="text-brand-blue font-bold text-lg mb-2 block">{BUSINESS_INFO.established}</span>
-                    <p className="text-gray-700">Riddhi Enterprises was established with a focus on delivering quality metal electrical support systems to the local market.</p>
-                 </div>
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+          <h2 className="text-3xl font-heading font-bold text-gray-900 mb-4 text-center">Company Timeline</h2>
+          <p className="text-gray-600 text-center max-w-xl mx-auto mb-16 text-base">
+            A journey of sustained growth, infrastructure investments, and engineering dedication.
+          </p>
+          
+          <div className="relative border-l-2 border-brand-blue/30 pl-8 ml-4 md:ml-0 md:pl-0 md:border-none space-y-12 md:space-y-16">
+            {/* Desktop center vertical line */}
+            <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-0.5 -translate-x-1/2 bg-brand-blue/20" />
+
+            {/* 2008: Foundation */}
+            <div className="relative md:grid md:grid-cols-5 md:items-center">
+              <div className="hidden md:block col-span-2 text-right pr-12">
+                <h3 className="text-xl font-bold text-gray-900">Foundation</h3>
+                <p className="text-gray-500 text-sm mt-1">The journey began</p>
               </div>
-              
-              <div className="md:grid md:grid-cols-5 items-center relative opacity-50">
-                 <div className="md:col-span-2 md:pr-12 md:text-right">
-                    <span className="text-gray-400 font-bold text-lg mb-2 block">[YEAR]</span>
-                    <p className="text-gray-500 text-sm italic">Editable milestone (e.g., Factory Expansion)</p>
-                 </div>
-                 <div className="absolute left-[-41px] top-0 md:static md:col-span-1 flex justify-center">
-                   <div className="h-6 w-6 rounded-full bg-gray-300 border-4 border-white shadow"></div>
-                 </div>
-                 <div className="hidden md:block col-span-2 text-left pl-12">
-                   <h3 className="text-xl font-bold text-gray-400">[MILESTONE]</h3>
-                 </div>
+              <div className="absolute -left-[41px] top-1 md:static md:col-span-1 flex justify-center z-10">
+                <div className="h-6 w-6 rounded-full bg-brand-blue border-4 border-white shadow-md"></div>
+              </div>
+              <div className="md:col-span-2 md:pl-12">
+                <div className="md:hidden mb-1">
+                  <span className="text-brand-blue font-bold text-lg mr-2">2008</span>
+                  <span className="font-bold text-gray-900 text-lg">– Foundation</span>
+                </div>
+                <span className="hidden md:block text-brand-blue font-bold text-lg mb-1">{BUSINESS_INFO.established}</span>
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                  Riddhi Enterprises was established with a focus on delivering quality metal electrical support systems to the local market.
+                </p>
               </div>
             </div>
-         </div>
+
+            {/* 2014: Facility Upgrade */}
+            <div className="relative md:grid md:grid-cols-5 md:items-center">
+              <div className="hidden md:block col-span-2 text-right pr-12">
+                <span className="text-brand-blue font-bold text-lg mb-1 block">2014</span>
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                  Upgraded workshop machinery to handle high-volume custom metal fabrication and panel support framing.
+                </p>
+              </div>
+              <div className="absolute -left-[41px] top-1 md:static md:col-span-1 flex justify-center z-10">
+                <div className="h-6 w-6 rounded-full bg-brand-blue border-4 border-white shadow-md"></div>
+              </div>
+              <div className="md:col-span-2 md:pl-12">
+                <div className="md:hidden mb-1">
+                  <span className="text-brand-blue font-bold text-lg mr-2">2014</span>
+                  <span className="font-bold text-gray-900 text-lg">– Facility Upgrade</span>
+                </div>
+                <div className="hidden md:block">
+                  <h3 className="text-xl font-bold text-gray-900">Facility Upgrade</h3>
+                  <p className="text-gray-500 text-sm mt-1">High-Volume Custom Metal Fabrication</p>
+                </div>
+                <p className="md:hidden text-gray-700 text-sm sm:text-base leading-relaxed mt-2">
+                  Upgraded workshop machinery to handle high-volume custom metal fabrication and panel support framing.
+                </p>
+              </div>
+            </div>
+
+            {/* 2020: Market Expansion */}
+            <div className="relative md:grid md:grid-cols-5 md:items-center">
+              <div className="hidden md:block col-span-2 text-right pr-12">
+                <h3 className="text-xl font-bold text-gray-900">Market Expansion</h3>
+                <p className="text-gray-500 text-sm mt-1">Infrastructure & Commercial Hubs</p>
+              </div>
+              <div className="absolute -left-[41px] top-1 md:static md:col-span-1 flex justify-center z-10">
+                <div className="h-6 w-6 rounded-full bg-brand-blue border-4 border-white shadow-md"></div>
+              </div>
+              <div className="md:col-span-2 md:pl-12">
+                <div className="md:hidden mb-1">
+                  <span className="text-brand-blue font-bold text-lg mr-2">2020</span>
+                  <span className="font-bold text-gray-900 text-lg">– Market Expansion</span>
+                </div>
+                <span className="hidden md:block text-brand-blue font-bold text-lg mb-1">2020</span>
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                  Broadened supplier networks to supply mega infrastructure projects, manufacturing units, and commercial hubs.
+                </p>
+              </div>
+            </div>
+
+            {/* 2026: Digital Integration */}
+            <div className="relative md:grid md:grid-cols-5 md:items-center">
+              <div className="hidden md:block col-span-2 text-right pr-12">
+                <span className="text-brand-blue font-bold text-lg mb-1 block">2026</span>
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                  Launched direct online client engagement and interactive product showcase (<a href="https://www.riddhienterprisess.in" target="_blank" rel="noopener noreferrer" className="text-brand-blue font-medium underline hover:text-blue-800">www.riddhienterprisess.in</a>).
+                </p>
+              </div>
+              <div className="absolute -left-[41px] top-1 md:static md:col-span-1 flex justify-center z-10">
+                <div className="h-6 w-6 rounded-full bg-brand-blue border-4 border-white shadow-md"></div>
+              </div>
+              <div className="md:col-span-2 md:pl-12">
+                <div className="md:hidden mb-1">
+                  <span className="text-brand-blue font-bold text-lg mr-2">2026</span>
+                  <span className="font-bold text-gray-900 text-lg">– Digital Integration</span>
+                </div>
+                <div className="hidden md:block">
+                  <h3 className="text-xl font-bold text-gray-900">Digital Integration</h3>
+                  <p className="text-gray-500 text-sm mt-1">Interactive Product Showcase & Online Engagement</p>
+                </div>
+                <p className="md:hidden text-gray-700 text-sm sm:text-base leading-relaxed mt-2">
+                  Launched direct online client engagement and interactive product showcase (<a href="https://www.riddhienterprisess.in" target="_blank" rel="noopener noreferrer" className="text-brand-blue font-medium underline hover:text-blue-800">www.riddhienterprisess.in</a>).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       
       <div className="py-20 text-center">

@@ -126,21 +126,6 @@ export const PRODUCTS = [
     applications: [
       "Underground Networking", "Substations", "Industrial Floors", "Telecommunications"
     ]
-  },
-  {
-    id: "hand-rails",
-    name: "Hand Rails",
-    description: "Industrial safety handrails and barrier systems.",
-    image: "/images/hand-rails.jpg",
-    features: [
-      "Robust safety barrier",
-      "Modular components for easy assembly",
-      "Corrosion-resistant finishes",
-      "Compliance with safety standards"
-    ],
-    applications: [
-      "Industrial Platforms", "Staircases", "Walkways", "Mezzanines"
-    ]
   }
 ];
 

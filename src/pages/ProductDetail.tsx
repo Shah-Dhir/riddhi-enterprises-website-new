@@ -60,17 +60,17 @@ export function ProductDetail() {
 
               <div className="flex flex-col sm:flex-row gap-4 mt-auto">
                 <Link 
-                  to="/quote" 
+                  to="/contact" 
                   state={{ product: product.name }}
                   className="flex-1 flex justify-center items-center bg-brand-blue hover:bg-blue-800 text-white py-4 px-6 rounded font-bold text-sm tracking-wide transition-colors"
                 >
-                  REQUEST QUOTE
+                  CONTACT US ABOUT THIS
                 </Link>
                 <a 
-                  href={generateWhatsAppLink(`Hello Riddhi Enterprises, I am interested in your ${product.name}. Please share specifications and quotation details.`)}
-                  target="_blank"
+                  href={generateWhatsAppLink(`Hello Riddhi Enterprises, I am interested in your ${product.name}. Please share technical specifications and details.`)}
+                  target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex-1 flex justify-center items-center bg-white border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-900 py-4 px-6 rounded font-bold text-sm tracking-wide transition-colors"
+                  className="flex-1 flex justify-center items-center bg-white border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-900 py-4 px-6 rounded font-bold text-sm tracking-wide transition-all"
                 >
                   WHATSAPP US
                 </a>

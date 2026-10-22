@@ -70,8 +70,8 @@ export function CustomManufacturing() {
               <div className="absolute -bottom-10 -left-10 bg-white p-8 rounded-xl shadow-2xl border border-gray-100 hidden md:block max-w-sm">
                 <h4 className="font-bold text-gray-900 mb-2 font-heading text-lg">Send Your Requirement</h4>
                 <p className="text-sm text-gray-600 mb-6">Our technical team evaluates drawings quickly to provide accurate pricing.</p>
-                <Link to="/quote" className="block text-center bg-brand-blue text-white py-3 rounded font-bold text-sm hover:bg-blue-800 transition-colors">
-                  UPLOAD DRAWING
+                <Link to="/contact" className="block text-center bg-brand-blue text-white py-3 rounded font-bold text-sm hover:bg-blue-800 transition-colors">
+                  CONTACT OUR TEAM
                 </Link>
               </div>
             </div>

@@ -66,20 +66,21 @@ export function Header() {
         {/* Desktop CTAs */}
         <div className="hidden lg:flex items-center space-x-4">
           <a
+            href={`tel:${BUSINESS_INFO.phone}`}
+            className="flex items-center text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors"
+          >
+            <Phone className="h-4 w-4 mr-1.5 text-brand-blue" />
+            {BUSINESS_INFO.phone}
+          </a>
+          <a
             href={generateWhatsAppLink("Hello Riddhi Enterprises")}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-sm font-medium text-gray-600 hover:text-green-600 transition-colors"
+            className="flex items-center bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-md text-sm font-bold shadow-sm transition-colors"
           >
             <MessageSquare className="h-4 w-4 mr-2" />
             WhatsApp Us
           </a>
-          <Link
-            to="/quote"
-            className="bg-brand-blue text-white px-5 py-2.5 rounded-md text-sm font-bold shadow-sm hover:bg-blue-800 transition-colors"
-          >
-            GET A QUOTE
-          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -114,12 +115,14 @@ export function Header() {
               >
                 <Phone className="h-4 w-4 mr-2" /> Call Us
               </a>
-              <Link
-                to="/quote"
-                className="flex justify-center w-full bg-brand-blue text-white py-3 px-4 rounded-md font-bold shadow-sm"
+              <a
+                href={generateWhatsAppLink("Hello Riddhi Enterprises")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-full bg-green-600 text-white py-3 px-4 rounded-md font-bold shadow-sm"
               >
-                GET A QUOTE
-              </Link>
+                <MessageSquare className="h-4 w-4 mr-2" /> WhatsApp Us
+              </a>
             </div>
           </div>
         </div>

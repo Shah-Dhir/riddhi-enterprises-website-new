@@ -94,10 +94,10 @@ export function Home() {
             
             <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Link 
-                to="/quote" 
+                to="/products" 
                 className="w-full sm:w-auto inline-flex justify-center items-center bg-brand-blue hover:bg-blue-700 text-white px-8 py-4 rounded-md font-bold text-sm tracking-wide transition-all shadow-lg hover:shadow-brand-blue/30"
               >
-                REQUEST A QUOTE
+                EXPLORE PRODUCTS
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <a 
@@ -109,10 +109,10 @@ export function Home() {
                 WHATSAPP US
               </a>
               <Link 
-                to="/products" 
-                className="hidden md:inline-flex justify-center items-center bg-transparent hover:bg-white/10 text-white px-8 py-4 rounded-md font-semibold text-sm tracking-wide transition-all border border-white/30 backdrop-blur-sm"
+                to="/contact" 
+                className="w-full sm:w-auto inline-flex justify-center items-center bg-transparent hover:bg-white/10 text-white px-8 py-4 rounded-md font-semibold text-sm tracking-wide transition-all border border-white/30 backdrop-blur-sm"
               >
-                EXPLORE PRODUCTS
+                CONTACT US
               </Link>
             </div>
           </div>
@@ -216,18 +216,12 @@ export function Home() {
                     </ul>
                   </div>
                   
-                  <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-100 mt-auto">
+                  <div className="pt-6 border-t border-gray-100 mt-auto">
                     <Link 
                       to={`/products/${product.id}`}
-                      className="flex-1 flex justify-center items-center bg-gray-900 hover:bg-black text-white py-3 px-4 rounded font-semibold text-sm transition-colors"
+                      className="w-full flex justify-center items-center bg-gray-900 hover:bg-brand-blue text-white py-3 px-4 rounded font-semibold text-sm transition-colors"
                     >
-                      View Details
-                    </Link>
-                    <Link 
-                      to="/quote"
-                      className="flex-1 flex justify-center items-center bg-brand-blue/10 hover:bg-brand-blue hover:text-white text-brand-blue py-3 px-4 rounded font-semibold text-sm transition-colors"
-                    >
-                      Request Quote
+                      View Product Details
                     </Link>
                   </div>
                 </div>
@@ -322,15 +316,14 @@ export function Home() {
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3.5 pt-2">
                 <Link 
-                  to="/quote" 
-                  state={{ product: "Perforated Cable Tray" }}
+                  to="/products/perforated-cable-tray" 
                   className="flex-1 inline-flex justify-center items-center bg-brand-blue hover:bg-blue-700 text-white py-3.5 px-6 rounded-md font-bold text-sm tracking-wide transition-all shadow-md hover:shadow-brand-blue/20"
                 >
-                  Get Perforated Cable Tray Quote
+                  View Perforated Cable Tray Specs
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <a 
-                  href={generateWhatsAppLink("Hello Riddhi Enterprises, I am interested in your Perforated Cable Tray. Please share specifications and quotation details.")}
+                  href={generateWhatsAppLink("Hello Riddhi Enterprises, I am interested in your Perforated Cable Tray. Please share specifications and details.")}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex justify-center items-center bg-white hover:bg-green-50 text-gray-900 hover:text-green-700 border-2 border-gray-200 hover:border-green-500 py-3.5 px-6 rounded-md font-bold text-sm tracking-wide transition-all"
@@ -380,8 +373,8 @@ export function Home() {
                 <Link to="/custom-manufacturing" className="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-md font-bold text-sm transition-colors">
                   Learn More
                 </Link>
-                <Link to="/quote" className="bg-brand-blue text-white hover:bg-blue-700 px-6 py-3 rounded-md font-bold text-sm transition-colors">
-                  Send Your Drawing
+                <Link to="/contact" className="bg-brand-blue text-white hover:bg-blue-700 px-6 py-3 rounded-md font-bold text-sm transition-colors">
+                  Contact Our Engineering Team
                 </Link>
               </div>
             </div>
@@ -435,10 +428,10 @@ export function Home() {
       <section className="py-20 bg-gray-50 border-t border-gray-200 text-center">
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">Ready to discuss your project requirements?</h2>
-          <p className="text-gray-600 mb-10 text-lg">Our technical team is ready to evaluate your drawings and provide an accurate quotation.</p>
+          <p className="text-gray-600 mb-10 text-lg">Our technical team is ready to evaluate your drawings and assist with your project.</p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link to="/quote" className="w-full sm:w-auto bg-brand-blue text-white px-8 py-4 rounded font-bold text-sm hover:bg-blue-800 transition-colors">
-              REQUEST A QUOTE
+            <Link to="/contact" className="w-full sm:w-auto bg-brand-blue text-white px-8 py-4 rounded font-bold text-sm hover:bg-blue-800 transition-colors">
+              CONTACT OUR TEAM
             </Link>
             <a href={`https://wa.me/${BUSINESS_INFO.whatsappClean}`} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-white border border-gray-300 text-gray-900 px-8 py-4 rounded font-bold text-sm hover:bg-gray-50 transition-colors">
               WHATSAPP OUR TEAM

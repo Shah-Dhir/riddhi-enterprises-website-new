@@ -98,8 +98,8 @@ export function Footer() {
             &copy; {new Date().getFullYear()} {BUSINESS_INFO.name}. All rights reserved.
           </p>
           <div className="flex space-x-4">
-            <Link to="/quote" className="text-xs text-gray-400 hover:text-white uppercase tracking-wider font-semibold">
-              Request a Quote
+            <Link to="/contact" className="text-xs text-gray-400 hover:text-white uppercase tracking-wider font-semibold">
+              Contact Us
             </Link>
             <span className="text-gray-700">|</span>
             <a href={`https://wa.me/${BUSINESS_INFO.whatsappClean}`} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-white uppercase tracking-wider font-semibold">

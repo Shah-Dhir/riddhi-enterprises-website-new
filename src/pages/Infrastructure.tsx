@@ -70,9 +70,9 @@ export function Infrastructure() {
       
       <div className="py-20 bg-gray-50 border-t border-gray-200 text-center">
         <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">Need a custom fabrication quote?</h2>
-          <Link to="/quote" className="inline-flex bg-brand-blue text-white px-8 py-4 rounded font-bold text-sm hover:bg-blue-800 transition-colors mt-4">
-            UPLOAD DRAWING & GET QUOTE
+          <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">Need custom fabrication for your project?</h2>
+          <Link to="/contact" className="inline-flex bg-brand-blue text-white px-8 py-4 rounded font-bold text-sm hover:bg-blue-800 transition-colors mt-4">
+            CONTACT OUR TEAM
           </Link>
         </div>
       </div>

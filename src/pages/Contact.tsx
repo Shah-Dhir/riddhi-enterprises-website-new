@@ -1,30 +1,79 @@
 import { useState, type FormEvent } from "react";
-import { BUSINESS_INFO } from "../config/business";
-import { Mail, Phone, MapPin, MessageSquare, Clock } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { BUSINESS_INFO, PRODUCTS, generateWhatsAppLink } from "../config/business";
+import { Mail, Phone, MapPin, MessageSquare, Clock, CheckCircle2 } from "lucide-react";
 
 export function Contact() {
+  const location = useLocation();
+  const prefilledProduct = (location.state as { product?: string } | null)?.product || "";
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [selectedProduct, setSelectedProduct] = useState(prefilledProduct);
+  const [submittedData, setSubmittedData] = useState<{
+    name: string;
+    company: string;
+    phone: string;
+    email: string;
+    product: string;
+    message: string;
+    url: string;
+  } | null>(null);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("idle");
-    
-    // In a real app, this would submit to the Google Apps Script URL
-    // const form = e.currentTarget;
-    // const formData = new FormData(form);
-    
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get("name") || "").trim();
+    const company = String(formData.get("company") || "").trim();
+    const phone = String(formData.get("phone") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const product = String(formData.get("product") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    const lines = [
+      "📋 *New Enquiry - Riddhi Enterprises*",
+      "",
+      `👤 *Name:* ${name}`,
+      company ? `🏢 *Company:* ${company}` : null,
+      `📞 *Phone:* ${phone}`,
+      `✉️ *Email:* ${email}`,
+      product ? `📦 *Product:* ${product}` : null,
+      "",
+      "💬 *Requirement / Message:*",
+      message,
+      "",
+      "---",
+      "Sent via Riddhi Enterprises Website"
+    ]
+      .filter((line) => line !== null)
+      .join("\n");
+
+    const whatsappUrl = generateWhatsAppLink(lines);
+
+    setSubmittedData({
+      name,
+      company,
+      phone,
+      email,
+      product,
+      message,
+      url: whatsappUrl,
+    });
+
+    // Attempt to open WhatsApp directly
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setSubmitStatus("success");
-      (e.target as HTMLFormElement).reset();
-    } catch (error) {
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    } catch {
+      // Browser popup blocker might intervene; the success UI provides direct button
     }
+
+    setSubmitStatus("success");
+    setIsSubmitting(false);
+    form.reset();
   };
 
   return (
@@ -85,7 +134,7 @@ export function Contact() {
                      href={`https://wa.me/${BUSINESS_INFO.whatsappClean}`} 
                      target="_blank" 
                      rel="noopener noreferrer"
-                     className="w-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-bold transition-colors"
+                     className="w-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-bold transition-colors shadow-sm"
                    >
                      <MessageSquare className="h-5 w-5 mr-2" /> Chat on WhatsApp
                    </a>
@@ -95,68 +144,154 @@ export function Contact() {
           
           {/* Contact Form */}
           <div className="lg:col-span-2 bg-white p-8 md:p-10 rounded-xl border border-gray-200 shadow-sm">
-             <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Send an Enquiry</h2>
+             <div className="flex items-center justify-between mb-6">
+               <div>
+                 <h2 className="text-2xl font-heading font-bold text-gray-900">Send an Enquiry</h2>
+                 <p className="text-sm text-gray-500 mt-1">Submit your requirement to connect immediately with our team on WhatsApp.</p>
+               </div>
+               <div className="hidden sm:flex items-center bg-green-50 border border-green-200 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold">
+                 <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+                 WhatsApp Connected
+               </div>
+             </div>
              
-             {submitStatus === "success" ? (
-               <div className="bg-green-50 border border-green-200 text-green-800 rounded-lg p-6 text-center h-full flex flex-col items-center justify-center min-h-[300px]">
-                 <div className="h-16 w-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
-                   <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+             {submitStatus === "success" && submittedData ? (
+               <div className="bg-green-50/70 border border-green-200 rounded-xl p-8 text-center flex flex-col items-center justify-center min-h-[380px]">
+                 <div className="h-16 w-16 bg-green-500 text-white rounded-full flex items-center justify-center mb-4 shadow-lg shadow-green-500/20">
+                   <CheckCircle2 className="h-9 w-9" />
                  </div>
-                 <h3 className="text-xl font-bold mb-2">Thank You!</h3>
-                 <p>Thank you for contacting Riddhi Enterprises. Our team will review your requirement and contact you shortly.</p>
-                 <button onClick={() => setSubmitStatus("idle")} className="mt-6 text-brand-blue font-semibold hover:underline">Send another enquiry</button>
+                 <h3 className="text-2xl font-bold font-heading text-gray-900 mb-2">Enquiry Sent to WhatsApp!</h3>
+                 <p className="text-gray-600 text-sm max-w-md mx-auto mb-6">
+                   Your enquiry details have been prepared and WhatsApp opened. If the WhatsApp window did not open automatically, please click below:
+                 </p>
+                 
+                 <div className="bg-white border border-green-200 rounded-lg p-5 text-left w-full max-w-md mb-6 shadow-sm text-sm space-y-2 text-gray-700">
+                   <div className="flex justify-between border-b border-gray-100 pb-1.5">
+                     <span className="text-gray-500 font-medium">Name:</span>
+                     <span className="font-semibold text-gray-900">{submittedData.name}</span>
+                   </div>
+                   {submittedData.company && (
+                     <div className="flex justify-between border-b border-gray-100 pb-1.5">
+                       <span className="text-gray-500 font-medium">Company:</span>
+                       <span className="font-semibold text-gray-900">{submittedData.company}</span>
+                     </div>
+                   )}
+                   <div className="flex justify-between border-b border-gray-100 pb-1.5">
+                     <span className="text-gray-500 font-medium">Phone:</span>
+                     <span className="font-semibold text-gray-900">{submittedData.phone}</span>
+                   </div>
+                   <div className="flex justify-between border-b border-gray-100 pb-1.5">
+                     <span className="text-gray-500 font-medium">Email:</span>
+                     <span className="font-semibold text-gray-900">{submittedData.email}</span>
+                   </div>
+                   {submittedData.product && (
+                     <div className="flex justify-between border-b border-gray-100 pb-1.5">
+                       <span className="text-gray-500 font-medium">Product:</span>
+                       <span className="font-semibold text-gray-900">{submittedData.product}</span>
+                     </div>
+                   )}
+                   <div className="pt-2 text-xs text-gray-600">
+                     <span className="font-semibold text-gray-800 block mb-1">Requirement:</span>
+                     <p className="bg-gray-50 p-2.5 rounded border border-gray-100 italic">{submittedData.message}</p>
+                   </div>
+                 </div>
+
+                 <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+                   <a
+                     href={submittedData.url}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="flex-1 inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-6 py-3.5 rounded-lg font-bold text-sm shadow-md transition-colors"
+                   >
+                     <MessageSquare className="h-4 w-4 mr-2" />
+                     Open WhatsApp Chat
+                   </a>
+                   <button 
+                     type="button"
+                     onClick={() => {
+                       setSubmitStatus("idle");
+                       setSubmittedData(null);
+                     }}
+                     className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3.5 rounded-lg font-semibold text-sm transition-colors"
+                   >
+                     Send Another Enquiry
+                   </button>
+                 </div>
                </div>
              ) : (
                <form onSubmit={handleSubmit} className="space-y-6">
                  <div className="grid md:grid-cols-2 gap-6">
                    <div>
                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
-                     <input required type="text" id="name" name="name" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" />
+                     <input required type="text" id="name" name="name" placeholder="e.g. Rajesh Kumar" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" />
                    </div>
                    <div>
                      <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">Company Name</label>
-                     <input type="text" id="company" name="company" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" />
+                     <input type="text" id="company" name="company" placeholder="e.g. Acme Infra Ltd." className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" />
                    </div>
                  </div>
                  
                  <div className="grid md:grid-cols-2 gap-6">
                    <div>
-                     <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
-                     <input required type="tel" id="phone" name="phone" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" />
+                     <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">Phone / WhatsApp Number *</label>
+                     <input required type="tel" id="phone" name="phone" placeholder="e.g. +91 98765 43210" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" />
                    </div>
                    <div>
                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
-                     <input required type="email" id="email" name="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" />
+                     <input required type="email" id="email" name="email" placeholder="e.g. name@company.com" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" />
                    </div>
                  </div>
                  
                  <div>
                    <label htmlFor="product" className="block text-sm font-semibold text-gray-700 mb-2">Product of Interest</label>
-                   <select id="product" name="product" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all bg-white">
+                   <select 
+                     id="product" 
+                     name="product" 
+                     value={selectedProduct}
+                     onChange={(e) => setSelectedProduct(e.target.value)}
+                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all bg-white"
+                   >
                      <option value="">Select a product...</option>
-                     <option value="Perforated Cable Tray">Perforated Cable Tray</option>
-                     <option value="Ladder Tray">Ladder Tray</option>
-                     <option value="Custom Requirement">Custom Requirement</option>
+                     {PRODUCTS.map((prod) => (
+                       <option key={prod.id} value={prod.name}>
+                         {prod.name}
+                       </option>
+                     ))}
+                     <option value="Custom Requirement">Custom Requirement / Fabrication</option>
                      <option value="Other">Other Product</option>
                    </select>
                  </div>
                  
                  <div>
                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">Message / Requirement *</label>
-                   <textarea required id="message" name="message" rows={4} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all resize-none"></textarea>
+                   <textarea 
+                     required 
+                     id="message" 
+                     name="message" 
+                     rows={4} 
+                     placeholder="Please specify thickness, finish (HDG, GI, Powder Coated), dimensions, quantity, or project requirements..."
+                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all resize-none"
+                   ></textarea>
                  </div>
                  
                  {submitStatus === "error" && (
-                   <p className="text-red-600 text-sm font-medium">There was an error sending your message. Please try again or contact us directly.</p>
+                   <p className="text-red-600 text-sm font-medium">There was an error sending your message. Please try again or contact us directly on WhatsApp.</p>
                  )}
                  
-                 <button 
-                   type="submit" 
-                   disabled={isSubmitting}
-                   className="w-full bg-brand-blue hover:bg-blue-800 text-white font-bold py-4 rounded-lg transition-colors disabled:opacity-70 flex justify-center items-center"
-                 >
-                   {isSubmitting ? "SENDING..." : "SUBMIT ENQUIRY"}
-                 </button>
+                 <div>
+                   <button 
+                     type="submit" 
+                     disabled={isSubmitting}
+                     className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors shadow-md hover:shadow-green-600/30 disabled:opacity-70 flex justify-center items-center text-base"
+                   >
+                     <MessageSquare className="h-5 w-5 mr-2" />
+                     {isSubmitting ? "PREPARING WHATSAPP..." : "SEND ENQUIRY ON WHATSAPP"}
+                   </button>
+                   <p className="text-xs text-center text-gray-500 mt-2.5 flex items-center justify-center">
+                     <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+                     Your enquiry will open directly in WhatsApp ({BUSINESS_INFO.phone}) for immediate response
+                   </p>
+                 </div>
                </form>
              )}
           </div>

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
@@ -18,7 +18,6 @@ import { CustomManufacturing } from "./pages/CustomManufacturing";
 import { Quality } from "./pages/Quality";
 import { Infrastructure } from "./pages/Infrastructure";
 import { Contact } from "./pages/Contact";
-import { RequestQuote } from "./pages/RequestQuote";
 
 export default function App() {
   return (
@@ -37,7 +36,7 @@ export default function App() {
             <Route path="/quality" element={<Quality />} />
             <Route path="/infrastructure" element={<Infrastructure />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/quote" element={<RequestQuote />} />
+            <Route path="/quote" element={<Navigate to="/contact" replace />} />
           </Routes>
         </main>
         <Footer />

@@ -30,7 +30,7 @@ export function CustomManufacturing() {
                   </div>
                   <div className="ml-5">
                     <h3 className="text-lg font-bold text-gray-900 mb-2">Dimensional Customization</h3>
-                    <p className="text-gray-600">Specific widths, heights, lengths, and thicknesses (e.g., 1.2mm up to 3.0mm) according to load requirements.</p>
+                    <p className="text-gray-600">Specific widths, heights, lengths, and thicknesses (e.g., 0.8mm to 3.00mm) according to load requirements.</p>
                   </div>
                 </div>
                 

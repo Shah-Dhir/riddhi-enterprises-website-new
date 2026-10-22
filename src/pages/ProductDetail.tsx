@@ -116,7 +116,7 @@ export function ProductDetail() {
                    </tr>
                    <tr>
                      <th className="py-3 font-semibold text-gray-900">Thickness</th>
-                     <td className="py-3">1.2 mm to 3.0 mm <span className="text-gray-400 italic">(Available as per project requirement)</span></td>
+                     <td className="py-3">0.8mm to 3.00mm <span className="text-gray-400 italic">(Available as per project requirement)</span></td>
                    </tr>
                    <tr>
                      <th className="py-3 font-semibold text-gray-900">Length</th>

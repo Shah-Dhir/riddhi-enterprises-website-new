@@ -262,7 +262,7 @@ export function Home() {
                 <span>•</span>
                 <span>Return flange rigidity</span>
                 <span>•</span>
-                <span>Up to 3.0 mm thickness</span>
+                <span>0.8mm to 3.00mm thickness</span>
               </div>
             </div>
 
@@ -290,7 +290,7 @@ export function Home() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Thickness Range</p>
-                  <p className="text-sm font-bold text-gray-900">1.2 mm to 3.0 mm (Custom as per spec)</p>
+                  <p className="text-sm font-bold text-gray-900">0.8mm to 3.00mm (Custom as per spec)</p>
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Standard Lengths</p>

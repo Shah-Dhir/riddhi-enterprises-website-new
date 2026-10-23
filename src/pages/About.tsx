@@ -63,7 +63,7 @@ export function About() {
             {/* Desktop center vertical line */}
             <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-0.5 -translate-x-1/2 bg-brand-blue/20" />
 
-            {/* 2008: Foundation */}
+            {/* 2005: Foundation */}
             <div className="relative md:grid md:grid-cols-5 md:items-center">
               <div className="hidden md:block col-span-2 text-right pr-12">
                 <h3 className="text-xl font-bold text-gray-900">Foundation</h3>
@@ -74,7 +74,7 @@ export function About() {
               </div>
               <div className="md:col-span-2 md:pl-12">
                 <div className="md:hidden mb-1">
-                  <span className="text-brand-blue font-bold text-lg mr-2">2008</span>
+                  <span className="text-brand-blue font-bold text-lg mr-2">2005</span>
                   <span className="font-bold text-gray-900 text-lg">– Foundation</span>
                 </div>
                 <span className="hidden md:block text-brand-blue font-bold text-lg mb-1">{BUSINESS_INFO.established}</span>
